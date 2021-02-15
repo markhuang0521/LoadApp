@@ -15,4 +15,8 @@
     <string name="radio_text_glide">Glide- Image Loading By BumpTech</string>
     <string name="radio_text_udacity">Load App- project repo By Udacity</string>
     <string name="radio_text_retrofit"> Retrofit- Type safe HTTP client for android by Square inc</string>
+    <string name="download_channel_id">download_channel</string>
+    <string name="download_channel_name">download file</string>
+    <string name="status_success">Success</string>
+    <string name="status_fail">Fail</string>
 </resources>
