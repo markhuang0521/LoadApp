@@ -1,6 +1,7 @@
 package com.udacity
 
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
@@ -42,8 +43,8 @@ class LoadingButton @JvmOverloads constructor(
                 btnAnimator = ValueAnimator.ofFloat(0f, measuredWidth.toFloat())
                     .apply {
                         duration = 2000
-                        repeatMode = ValueAnimator.INFINITE
-                        repeatCount = ValueAnimator.RESTART
+                        repeatMode = ValueAnimator.RESTART
+                        repeatCount = ValueAnimator.INFINITE
                         addUpdateListener {
                             loadingWidth = animatedValue as Float
                             this@LoadingButton.invalidate()
@@ -53,8 +54,8 @@ class LoadingButton @JvmOverloads constructor(
                 // circle animation
                 circleAnimator = ValueAnimator.ofFloat(0f, 360f).apply {
                     duration = 1500
-                    repeatMode = ValueAnimator.INFINITE
-                    repeatCount = ValueAnimator.RESTART
+                    repeatMode = ValueAnimator.RESTART
+                    repeatCount = ValueAnimator.INFINITE
 
                     interpolator = AccelerateInterpolator(1f)
                     addUpdateListener {
