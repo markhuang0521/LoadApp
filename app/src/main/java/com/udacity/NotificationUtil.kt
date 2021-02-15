@@ -18,7 +18,6 @@ fun NotificationManager.sendNotification(
 ) {
 
 
-    // TODO: Step 1.12 create PendingIntent
     val contentPendingIntent = PendingIntent.getActivity(
         applicationContext,
         NOTIFICATION_ID,
@@ -34,19 +33,15 @@ fun NotificationManager.sendNotification(
         applicationContext,
         applicationContext.getString(R.string.download_channel_id)
     )
-        // TODO: Step 1.3 set title, text and icon to builder
         .setContentTitle(applicationContext.getString(R.string.notification_title))
         .setContentText(messageBody)
         .setSmallIcon(R.drawable.ic_assistant_black_24dp)
-        // TODO: Step 1.13 set content intent
         .setContentIntent(contentPendingIntent)
-        // TODO: Step 2.1 add style to builder
         .addAction(R.drawable.ic_assistant_black_24dp, "Check Status", contentPendingIntent)
 
         .setPriority(NotificationCompat.PRIORITY_LOW)
         .setAutoCancel(true)
 
-    // TODO Step 1.4 call notify
     // Deliver the notification
     notify(NOTIFICATION_ID, builder.build())
 }

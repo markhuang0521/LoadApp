@@ -5,7 +5,7 @@
         motion:autoTransition="animateToEnd"
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@+id/start"
-        motion:duration="3000">
+        motion:duration="2500">
         <KeyFrameSet>
             <KeyAttribute
                 android:alpha="0.0"
@@ -23,6 +23,19 @@
                 android:alpha="1.0"
                 motion:framePosition="100"
                 motion:motionTarget="@id/tv_status" />
+            <KeyAttribute
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:translationX="50dp"
+                motion:framePosition="50"
+                motion:motionTarget="@id/tv_file" />
+            <KeyAttribute
+                android:rotation="-360"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                motion:framePosition="50"
+                motion:motionTarget="@id/tv_status" />
+
         </KeyFrameSet>
 
     </Transition>

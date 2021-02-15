@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
+import androidx.core.content.withStyledAttributes
 import kotlin.math.min
 import kotlin.properties.Delegates
 
@@ -22,17 +23,18 @@ class LoadingButton @JvmOverloads constructor(
 
     private var btnAnimator = ValueAnimator()
     private var circleAnimator = ValueAnimator()
-    private val paintBtn = Paint().apply {
-        color = context.getColor(R.color.colorPrimary)
-    }
+
+
+    private val paintBtn = Paint()
+    private val paintCircle = Paint()
     private val paintBtnText = Paint().apply {
-        color = Color.WHITE
         textSize = 55f
         textAlign = Paint.Align.CENTER
-
         typeface = Typeface.create("", Typeface.BOLD)
-
     }
+    private var btnColor = 0
+    private var btnTextColor = 0
+    private var circleColor = 0
 
     var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
         when (new) {
@@ -81,10 +83,26 @@ class LoadingButton @JvmOverloads constructor(
 
     }
 
+
+    init {
+        isClickable = true
+        buttonText = "DOWNLOAD"
+        context.theme.obtainStyledAttributes(attrs, R.styleable.LoadingButton, 0, 0).apply {
+            btnColor = getColor(R.styleable.LoadingButton_btnBgColor, 0)
+            btnTextColor = getColor(R.styleable.LoadingButton_btnTextColor, 0)
+            circleColor = getColor(R.styleable.LoadingButton_circleColor, 0)
+
+        }
+        paintBtn.color = btnColor
+        paintBtnText.color = btnTextColor
+        paintCircle.color = circleColor
+
+
+    }
+
     override fun onDraw(canvas: Canvas?) {
+        paintBtn.color = btnColor
 
-
-        paintBtn.color = context.getColor(R.color.colorPrimary)
         super.onDraw(canvas)
         canvas!!.drawRect(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat(), paintBtn)
 
@@ -102,7 +120,7 @@ class LoadingButton @JvmOverloads constructor(
             (measuredHeight / 2) - 30f,
             measuredWidth - 50f,
             (measuredHeight / 2) + 30f,
-            0f, loadingAngle, true, paintBtnText
+            0f, loadingAngle, true, paintCircle
         )
 
     }
@@ -111,13 +129,6 @@ class LoadingButton @JvmOverloads constructor(
         if (super.performClick()) return true
         invalidate()
         return true
-    }
-
-
-    init {
-        isClickable = true
-        buttonText = "DOWNLOAD"
-
     }
 
 
