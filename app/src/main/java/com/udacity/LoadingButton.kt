@@ -53,7 +53,7 @@ class LoadingButton @JvmOverloads constructor(
                 // circle animation
                 circleAnimator = ValueAnimator.ofFloat(0f, 360f).apply {
                     duration = 1500
-                    repeatMode = ValueAnimator.REVERSE
+                    repeatMode = ValueAnimator.INFINITE
                     repeatCount = ValueAnimator.RESTART
 
                     interpolator = AccelerateInterpolator(1f)
